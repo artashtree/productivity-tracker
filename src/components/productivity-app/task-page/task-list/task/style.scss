@@ -1,0 +1,203 @@
+.task-list {
+  &__item {
+    margin-bottom: 0.9rem;
+    background-color: #fff;
+    position: relative;
+    display: flex;
+  }
+
+  &__left-block {
+    width: 8.7rem;
+    text-align: center;
+    position: relative;
+  }
+
+  &__right-block {
+    flex-basis: 8.7rem;
+  }
+
+  &__edit-block {
+    flex-basis: 8.7rem;
+    position: relative;
+
+    @media only screen and (max-width: 767px) {
+      flex-basis: 5rem;
+    }
+  }
+
+  &__edit-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.3rem 0 0 -1rem;
+    text-decoration: none;
+    color: #c4c7c7;
+
+    &:hover {
+      color: #88a3b5;
+    }
+  }
+
+  &__date-block {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    border-left: 1.1rem solid transparent;
+
+    .task-list__item--category-work & {
+      border-left-color: #ffb200;
+    }
+
+    .task-list__item--category-education & {
+      border-left-color: #e16c65;
+    }
+
+    .task-list__item--category-hobby & {
+      border-left-color: #b470d0;
+    }
+
+    .task-list__item--category-sport & {
+      border-left-color: #59abe3;    
+    }
+
+    .task-list__item--category-other & {
+      border-left-color: #00d4d9;    
+    }
+  }
+
+  &__today {
+    display: block;
+    height: 100%;
+    font-size: 1rem;
+    line-height: 6.8rem;
+    text-transform: uppercase;
+  }
+
+  &__date {
+    display: block;
+    font-family: "PT Sans", sans-serif;
+    position: relative;
+    top: 50%;
+    margin-top: -2.1rem;
+  }
+
+  &__day {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+  }
+
+  &__month {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &__remove-block {
+    height: 100%;
+    position: relative;
+    z-index: 20;
+    display: none;
+  }
+
+  &__remove-btn {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    font-size: 4rem;
+    line-height: 8.7rem;
+    height: 100%;
+    display: none;
+
+    i {
+      position: absolute;
+      top: -2rem;
+      left: -2rem;
+      display: block;
+    }
+  }
+
+  &__remove-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &__description {
+    padding: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    flex: 1;
+  }
+
+  &__timer-btn {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    font-size: 6rem;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
+
+  &__icon-holder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -3rem;
+    margin-left: -3rem;
+  }
+
+  &__estimation {
+    position: absolute;
+    left: 2.2rem;
+    top: 2rem;
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  &__timer-btn {
+    .task-list__item--priority-urgent & {
+      background-color: #f75c4c;
+    }
+
+    .task-list__item--priority-high & {
+      background-color: #ffa841;
+    }
+
+    .task-list__item--priority-middle & {
+      background-color: #fddc43;
+    }
+
+    .task-list__item--priority-low & {
+      background-color: #1abc9c;
+    }
+  }
+
+  &__heading {
+    .task-list__item--priority-urgent & {
+      color: #f75c4c;
+    }
+
+    .task-list__item--priority-high & {
+      color: #ffa841;
+    }
+
+    .task-list__item--priority-middle & {
+      color: #fddc43;
+    }
+
+    .task-list__item--priority-low & {
+      color: #1abc9c;
+    }
+  }
+}

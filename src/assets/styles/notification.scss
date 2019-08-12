@@ -1,0 +1,73 @@
+
+/* notifications */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 10;
+    border-radius: 1rem;
+    padding: 0 5rem 0 6.6rem;
+    max-width: 37rem;
+    border: 0.1rem solid #dfe2e5;
+    display: none;
+  }
+  .notification--active {
+    display: block;
+  }
+  .notification__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 6.6rem;
+    height: 100%;
+    text-align: center;
+    border-radius: 1rem 0 0 1rem;
+  }
+  .notification__icon {
+    font-size: 3.2rem;
+    line-height: 5rem;
+    color: #fff;
+  }
+  .notification__text {
+    font-size: 1.7rem;
+    margin: 0;
+    padding: 1.6rem 0 1.6rem 1.4rem;
+    color: #fff;
+  }
+  .notification__close {
+    position: absolute;
+    top: 50%;
+    right: 1.6rem;
+    margin-top: -1.2rem;
+    text-decoration: none;
+    color: #fff;
+    font-size: 2.4rem;
+  }
+  .notification__close:hover {
+    opacity: 0.5;
+  }
+  .notification--success {
+    background-color: #1ca991;
+  }
+  .notification--success .notification__placeholder {
+    background-color: #49baa7;
+  }
+  .notification--error {
+    background-color: #d8584d;
+  }
+  .notification--error .notification__placeholder {
+    background-color: #e07971;
+  }
+  .notification--warning {
+    background-color: #df9843;
+  }
+  .notification--warning .notification__placeholder {
+    background-color: #e5ad69;
+  }
+  .notification--info {
+    background-color: #529bcd;
+  }
+  .notification--info .notification__placeholder {
+    background-color: #75afd7;
+  }
