@@ -143,6 +143,7 @@ class AddTaskDialog extends Component {
                 value={deadline}
                 name="deadline"
                 onChange={this.handleTextChange}
+                required
               />
             </li>
             <li className="dialog__list-item">
