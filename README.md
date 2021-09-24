@@ -1,3 +1,7 @@
+## Productivity Tracker based on Pomodoro Technique
+
+[https://productivity-tracker.herokuapp.com/](https://productivity-tracker.herokuapp.com/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
