@@ -92,7 +92,7 @@ class AddTaskDialog extends Component {
                 placeholder="Add title here"
                 value={title}
                 onChange={this.handleTextChange}
-                required
+                required="required"
               />
             </li>
             <li className="dialog__list-item">
@@ -105,7 +105,7 @@ class AddTaskDialog extends Component {
                 placeholder="Add description here"
                 value={description}
                 onChange={this.handleTextChange}
-                required
+                required="required"
               />
             </li>
             <li className="dialog__list-item">
@@ -143,7 +143,7 @@ class AddTaskDialog extends Component {
                 value={deadline}
                 name="deadline"
                 onChange={this.handleTextChange}
-                required
+                required="required"
               />
             </li>
             <li className="dialog__list-item">
