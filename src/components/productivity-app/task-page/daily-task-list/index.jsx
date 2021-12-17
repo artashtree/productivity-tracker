@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { switchDailyTasksVisibility } from "../../../../actions/taskActions";
 
 import TaskList from "../task-list";
+import "./style.css";
 
 const tabsConfig = [
   {

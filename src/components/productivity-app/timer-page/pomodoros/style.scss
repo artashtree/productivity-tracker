@@ -1,0 +1,32 @@
+.timer__pomodoro {
+  margin: 0 0 5rem;
+  padding: 0;
+  list-style: none;
+}
+.timer__pomodoro-item {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.8rem;
+}
+
+.timer__pomodoro-img {
+  width: 2.5rem;
+  height: 2.3rem;
+}
+.timer__pomodoro-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0.8rem;
+}
+.timer__pomodoro-add {
+  background-color: transparent;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #8da5b8;
+  vertical-align: top;
+}
+.timer__pomodoro-add:hover {
+  color: #82c7e0;
+}
