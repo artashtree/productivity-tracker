@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import "./style.scss";
-
 const scale = [1, 2, 3, 4, 5];
 
 class RadioControl extends Component {

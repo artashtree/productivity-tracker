@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import "./style.scss";
-
 import emptyTomato from "./empty-tomato.svg";
 import fillTomato from "./fill-tomato.svg";
 import failedTomato from "./tomato-failed.svg";
