@@ -9,7 +9,7 @@ class Header extends Component {
   render() {
     return (
       <header className="header">
-        <div className="content clearfix">
+        <div className="content">
           <a href="/" className="logo">
             <img src={logo} className="logo__img" alt="Productivity tracker" />
           </a>
