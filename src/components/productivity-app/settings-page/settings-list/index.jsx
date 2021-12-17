@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import "./style.scss";
 import SettingsItem from "./settings-item";
 
 const settingsArr = [

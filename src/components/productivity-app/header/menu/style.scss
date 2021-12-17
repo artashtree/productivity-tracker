@@ -1,0 +1,48 @@
+.menu {
+  float: right;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    display: inline-block;
+    position: relative;
+
+    &:not(:first-child) {
+      margin-left: 2rem;
+    }
+
+    &--add,
+    &--remove {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: #8da5b8;
+    text-decoration: none;
+    font-size: 2rem;
+
+    .menu__item--active & {
+      color: #fff;
+    }
+
+    &:hover,
+    &--active {
+      color: #82c7e0;
+    }
+  }
+
+  &__removed-count {
+    background-color: #f75c4c;
+    color: #fff;
+    position: absolute;
+    bottom: -1.1rem;
+    right: -1.1rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+    border-radius: 50%;
+  }
+}

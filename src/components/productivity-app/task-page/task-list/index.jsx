@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Task from "./task";
+import "./style.scss";
 
 class TaskList extends Component {
   render() {

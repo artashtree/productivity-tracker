@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import "./style.scss";
+
 const Preloader = () => {
   return (
     <div className="lds">
