@@ -5,7 +5,7 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import "./style.scss";
+// import "./style.css";
 
 const activeStyle = { color: "#82c7e0" };
 

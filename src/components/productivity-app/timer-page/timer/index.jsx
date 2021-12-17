@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import firebase from "firebase";
 
 import Pomodoros from "../pomodoros";
-import "./style.scss";
 
 class Timer extends Component {
   constructor(props) {

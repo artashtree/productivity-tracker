@@ -11,7 +11,6 @@ import EditTaskDialog from "../dialogs/edit-task-dialog";
 import Modal from "../modal";
 import { showModal } from "../../../actions/modalActions";
 import Preloader from "../preloader";
-import "./style.scss";
 
 class TaskPage extends Component {
   constructor(props) {

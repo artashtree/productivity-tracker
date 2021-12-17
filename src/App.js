@@ -8,7 +8,8 @@ import "./assets/fonts/icomoon.eot";
 import "./assets/fonts/icomoon.svg";
 import "./assets/fonts/icomoon.ttf";
 import "./assets/fonts/icomoon.woff";
-import "./assets/styles/base.scss";
+
+import "./assets/styles/style.css";
 
 class App extends Component {
   render() {
