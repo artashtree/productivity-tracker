@@ -56,8 +56,8 @@ class ReportPage extends Component {
         <div className="content">
           <h1 className="heading">
             Report
-            <div id="charts-container" />
           </h1>
+          <div id="charts-container" />
         </div>
       </main>
     );
