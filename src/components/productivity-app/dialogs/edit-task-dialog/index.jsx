@@ -145,8 +145,7 @@ class EditTaskDialog extends Component {
               <input
                 id="add-task-deadline"
                 className="dialog__text-input"
-                type="text"
-                placeholder=""
+                type="date"
                 value={deadline}
                 name="deadline"
                 onChange={this.handleTextChange}
