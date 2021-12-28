@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-
 import img from "./tomato_settings.svg";
 
 class FirstTimeMessage extends Component {
@@ -13,7 +12,10 @@ class FirstTimeMessage extends Component {
           application settings
         </p>
         <div className="buttons">
-          <button onClick={() => this.props.handleSkip()} className="buttons__btn buttons__btn--blue">
+          <button
+            onClick={() => this.props.handleSkip()}
+            className="buttons__btn buttons__btn--blue"
+          >
             Skip
           </button>
           <button

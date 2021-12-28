@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import FirstTimeMessage from "./messages/first-time-message";
 import FirstTaskMessage from "./messages/first-task-message";
 import DragFirstTaskMessage from "./messages/drag-first-task-message";
@@ -18,7 +17,7 @@ class TaskPage extends Component {
     super(props);
     this.state = {
       firstTimeMessage: false,
-      firstTaskNessage: false
+      firstTaskNessage: false,
     };
 
     this.handleSkip = this.handleSkip.bind(this);
@@ -38,7 +37,7 @@ class TaskPage extends Component {
     const { tasks } = this.props;
     const filteredTasks = {};
 
-    Object.keys(tasks).map(key => {
+    Object.keys(tasks).map((key) => {
       switch (tasklist) {
         case "daily":
           if (!tasks[key]["isGlobal"]) filteredTasks[key] = tasks[key];
@@ -56,7 +55,7 @@ class TaskPage extends Component {
   handleSkip() {
     this.setState({
       firstTimeMessage: false,
-      firstTaskMessage: true
+      firstTaskMessage: true,
     });
   }
 
@@ -122,13 +121,10 @@ class TaskPage extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   tasks: state.tasks.items,
   dialog: state.modals.dialog,
-  noTasks: state.tasks.noTasks
+  noTasks: state.tasks.noTasks,
 });
 
-export default connect(
-  mapStateToProps,
-  { showModal }
-)(TaskPage);
+export default connect(mapStateToProps, { showModal })(TaskPage);

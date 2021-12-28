@@ -1,14 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-
 import App from "./components/App";
 import store from "./store";
-
-import "./assets/fonts/icomoon.eot";
-import "./assets/fonts/icomoon.svg";
-import "./assets/fonts/icomoon.ttf";
-import "./assets/fonts/icomoon.woff";
 import "./assets/styles/base.scss";
 
 import * as serviceWorker from "./serviceWorker";

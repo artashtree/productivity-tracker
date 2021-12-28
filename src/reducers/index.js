@@ -8,5 +8,5 @@ export default combineReducers({
   tasks: taskReducer,
   settings: settingReducer,
   modals: modalReducer,
-  timer: timerReducer
+  timer: timerReducer,
 });

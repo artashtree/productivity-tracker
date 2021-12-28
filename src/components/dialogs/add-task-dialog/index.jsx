@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import firebase from "firebase";
-
 import RadioControl from "../radio-control";
 import { hideModal } from "../../../actions/modalActions";
 
@@ -20,8 +19,8 @@ class AddTaskDialog extends Component {
         estimation: 3,
         priority: "urgent",
         isDone: false,
-        isGlobal: true
-      }
+        isGlobal: true,
+      },
     };
 
     this.handleAddTask = this.handleAddTask.bind(this);
@@ -37,10 +36,10 @@ class AddTaskDialog extends Component {
     dbRef.push(form);
     dbRef.on(
       "value",
-      data => {
+      (data) => {
         if (!data.val()) console.error("Error. Cannot add task.");
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
 
     this.props.hideModal();
@@ -68,14 +67,7 @@ class AddTaskDialog extends Component {
   }
 
   render() {
-    const {
-      title,
-      description,
-      category,
-      deadline,
-      estimation,
-      priority
-    } = this.state.form;
+    const { title, description, category, deadline, estimation, priority } = this.state.form;
 
     return (
       <section className="dialog">
@@ -110,7 +102,7 @@ class AddTaskDialog extends Component {
             </li>
             <li className="dialog__list-item">
               <h2 className="dialog__list-item-title">Category</h2>
-              {categoryConfig.map(item => {
+              {categoryConfig.map((item) => {
                 const id = item.toLowerCase();
                 const checked = { checked: false };
                 if (id === category) checked.checked = true;
@@ -154,7 +146,7 @@ class AddTaskDialog extends Component {
             </li>
             <li className="dialog__list-item">
               <h2 className="dialog__list-item-title">Priority</h2>
-              {priorityConfig.map(item => {
+              {priorityConfig.map((item) => {
                 const id = item.toLowerCase();
                 const checked = { checked: false };
                 if (id === priority) checked.checked = true;
@@ -197,7 +189,4 @@ class AddTaskDialog extends Component {
   }
 }
 
-export default connect(
-  null,
-  { hideModal }
-)(AddTaskDialog);
+export default connect(null, { hideModal })(AddTaskDialog);

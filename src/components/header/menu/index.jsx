@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  NavLink
-} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./style.scss";
 
 const activeStyle = { color: "#82c7e0" };
@@ -20,12 +15,7 @@ class Menu extends Component {
           <a href="" id="remove-mode-btn" className="icon-trash menu__link" />
         </li>
         <li className="menu__item">
-          <NavLink
-            activeStyle={activeStyle}
-            exact
-            to={"/"}
-            className="icon-list menu__link"
-          />
+          <NavLink activeStyle={activeStyle} exact to={"/"} className="icon-list menu__link" />
         </li>
         <li className="menu__item">
           <NavLink

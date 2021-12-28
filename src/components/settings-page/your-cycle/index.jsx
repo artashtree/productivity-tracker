@@ -10,34 +10,28 @@ class YourCycle extends Component {
   }
 
   generateYourCycleContent() {
-    const {
-      longBreak,
-      shortBreak,
-      workIteration,
-      workTime
-    } = this.props.settings;
+    const { longBreak, shortBreak, workIteration, workTime } = this.props.settings;
 
     let fullWorkTime = workTime * workIteration * 2;
     let fullShortBreak = shortBreak * (workIteration - 1) * 2;
     let fullTime = fullWorkTime + fullShortBreak + longBreak;
     let percent = fullTime / 100;
-    let firstCycle =
-      workTime * workIteration + shortBreak * (workIteration - 1) + longBreak;
+    let firstCycle = workTime * workIteration + shortBreak * (workIteration - 1) + longBreak;
     let content = [];
 
     for (let i = 0; i < workIteration * 2; i++) {
       let dataContent = {};
       if (i === 0) {
         dataContent = {
-          "data-content": 0
+          "data-content": 0,
         };
       } else if (i === workIteration * 2 - 1) {
         dataContent = {
-          "data-content": this.formatTime(fullTime)
+          "data-content": this.formatTime(fullTime),
         };
       } else if (i === workIteration) {
         dataContent = {
-          "data-content": "First cycle: " + this.formatTime(firstCycle)
+          "data-content": "First cycle: " + this.formatTime(firstCycle),
         };
       }
 
@@ -75,7 +69,7 @@ class YourCycle extends Component {
     for (let i = 0; i < spanCount - 1; i++) {
       time += 30;
       let dataContent = {
-        "data-content": this.formatTime(time)
+        "data-content": this.formatTime(time),
       };
       content.push(
         <span

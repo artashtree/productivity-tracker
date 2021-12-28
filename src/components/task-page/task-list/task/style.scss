@@ -58,11 +58,11 @@
     }
 
     .task-list__item--category-sport & {
-      border-left-color: #59abe3;    
+      border-left-color: #59abe3;
     }
 
     .task-list__item--category-other & {
-      border-left-color: #00d4d9;    
+      border-left-color: #00d4d9;
     }
   }
 
@@ -143,7 +143,7 @@
     height: 100%;
     width: 100%;
     border: 0;
-  
+
     &:not(:disabled) {
       cursor: pointer;
     }

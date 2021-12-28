@@ -167,6 +167,7 @@
   text-align: center;
   margin: 0 0 4rem;
 }
+
 .categories-list {
   width: 28.5rem;
   margin: 0 auto 7rem;
@@ -176,12 +177,14 @@
   line-height: 2;
   color: #8da5b8;
 }
+
 .categories-list__item {
   border-bottom: 0.1rem solid #425869;
   position: relative;
   margin-bottom: 3rem;
   text-align: left;
 }
+
 .categories-list__item:before {
   content: "";
   width: 1.7rem;
@@ -191,24 +194,31 @@
   left: -4rem;
   border-radius: 50%;
 }
+
 .categories-list__item--work:before {
   background-color: #ffb200;
 }
+
 .categories-list__item--education:before {
   background-color: #59abe3;
 }
+
 .categories-list__item--hobby:before {
   background-color: #b470d0;
 }
+
 .categories-list__item--sport:before {
   background-color: #e16c65;
 }
+
 .categories-list__item--other:before {
   background-color: #00d4d9;
 }
+
 .tabs-list--center {
   text-align: center;
 }
+
 .paragraph {
   margin: 0 0 3.5rem;
   color: #fff;

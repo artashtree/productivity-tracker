@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import firebase from "firebase";
-
 import RadioControl from "../radio-control";
 import { hideModal } from "../../../actions/modalActions";
 
@@ -20,8 +19,8 @@ class EditTaskDialog extends Component {
         estimation: 0,
         priority: 0,
         isDone: false,
-        isGlobal: true
-      }
+        isGlobal: true,
+      },
     };
 
     this.handleEditTask = this.handleEditTask.bind(this);
@@ -48,7 +47,7 @@ class EditTaskDialog extends Component {
     const db = firebase.database();
     const dbRef = db.ref(`tasks/${id}`);
     dbRef.set(form);
-    dbRef.once("value", null, err => console.error(err));
+    dbRef.once("value", null, (err) => console.error(err));
 
     this.props.hideModal();
     e.preventDefault();
@@ -75,14 +74,7 @@ class EditTaskDialog extends Component {
   }
 
   render() {
-    const {
-      title,
-      description,
-      category,
-      deadline,
-      estimation,
-      priority
-    } = this.state.form;
+    const { title, description, category, deadline, estimation, priority } = this.state.form;
 
     return (
       <section className="dialog">
@@ -117,7 +109,7 @@ class EditTaskDialog extends Component {
             </li>
             <li className="dialog__list-item">
               <h2 className="dialog__list-item-title">Category</h2>
-              {categoryConfig.map(item => {
+              {categoryConfig.map((item) => {
                 const id = item.toLowerCase();
                 const checked = { checked: false };
                 if (id === category) checked.checked = true;
@@ -161,7 +153,7 @@ class EditTaskDialog extends Component {
             </li>
             <li className="dialog__list-item">
               <h2 className="dialog__list-item-title">Priority</h2>
-              {priorityConfig.map(item => {
+              {priorityConfig.map((item) => {
                 const id = item.toLowerCase();
                 const checked = { checked: false };
                 if (id === priority) checked.checked = true;
@@ -204,12 +196,9 @@ class EditTaskDialog extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   tasks: state.tasks.items,
-  dialog: state.modals.dialog
+  dialog: state.modals.dialog,
 });
 
-export default connect(
-  mapStateToProps,
-  { hideModal }
-)(EditTaskDialog);
+export default connect(mapStateToProps, { hideModal })(EditTaskDialog);

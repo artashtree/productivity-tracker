@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-
-import "./style.scss";
 import SettingsItem from "./settings-item";
+import "./style.scss";
 
 const settingsArr = [
   {
@@ -10,7 +9,7 @@ const settingsArr = [
     title: "Work Time",
     step: 5,
     min: 15,
-    max: 35
+    max: 35,
   },
   {
     name: "work-iteration",
@@ -18,7 +17,7 @@ const settingsArr = [
     title: "Work Iteration",
     step: 1,
     min: 2,
-    max: 5
+    max: 5,
   },
   {
     name: "short-break",
@@ -26,7 +25,7 @@ const settingsArr = [
     title: "Short Break",
     step: 1,
     min: 3,
-    max: 5
+    max: 5,
   },
   {
     name: "long-break",
@@ -34,8 +33,8 @@ const settingsArr = [
     title: "Long Break",
     step: 5,
     min: 15,
-    max: 40
-  }
+    max: 40,
+  },
 ];
 
 class SettingsList extends Component {
@@ -44,7 +43,7 @@ class SettingsList extends Component {
 
     return (
       <ul className="pomodoros-list">
-        {settingsArr.map(item => (
+        {settingsArr.map((item) => (
           <SettingsItem
             config={item}
             value={settings[item.pname]}

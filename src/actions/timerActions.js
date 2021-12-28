@@ -1,11 +1,8 @@
-import firebase from "firebase";
-import {
-  SET_TIMER
-} from "./types";
+import { SET_TIMER } from "./types";
 
-export const setTimer = (id, task) => dispatch => {
+export const setTimer = (id, task) => (dispatch) => {
   dispatch({
     type: SET_TIMER,
-    payload: {id, task}
+    payload: { id, task },
   });
 };

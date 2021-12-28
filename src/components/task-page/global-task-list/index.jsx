@@ -1,32 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { switchGlobalTasksVisibility } from "../../../actions/taskActions";
-
 import TaskList from "../task-list";
-import "./style.css";
 
 const tabsConfig = [
   {
     title: "All",
-    state: "all"
+    state: "all",
   },
   {
     title: "Urgent",
-    state: "urgent"
+    state: "urgent",
   },
   {
     title: "High",
-    state: "high"
+    state: "high",
   },
   {
     title: "Middle",
-    state: "middle"
+    state: "middle",
   },
   {
     title: "Low",
-    state: "low"
-  }
+    state: "low",
+  },
 ];
 
 class GlobalTaskList extends Component {
@@ -43,7 +40,7 @@ class GlobalTaskList extends Component {
   doesCategoryExist(category) {
     const { tasks } = this.props;
     let exists;
-    Object.keys(tasks).map(key => {
+    Object.keys(tasks).map((key) => {
       if (tasks[key]["category"] === category) exists = true;
     });
     return exists;
@@ -100,7 +97,7 @@ class GlobalTaskList extends Component {
           </h1>
 
           <ul className="task-list-tabs task-list-tabs--priority">
-            {tabsConfig.map(item => {
+            {tabsConfig.map((item) => {
               let activeClass = "";
               if (this.props.globalTasksVisibility === item.state)
                 activeClass = "task-list-tabs__item--active";
@@ -128,46 +125,31 @@ class GlobalTaskList extends Component {
           {Object.keys(workTasks).length > 0 && (
             <section className="global-task-section global-task-section--work">
               <h1 className="global-task-section__heading">Work</h1>
-              <TaskList
-                tasks={workTasks}
-                handleEditTask={this.props.handleEditTask}
-              />
+              <TaskList tasks={workTasks} handleEditTask={this.props.handleEditTask} />
             </section>
           )}
           {Object.keys(educationTasks).length > 0 && (
             <section className="global-task-section global-task-section--education">
               <h1 className="global-task-section__heading">Education</h1>
-              <TaskList
-                tasks={educationTasks}
-                handleEditTask={this.props.handleEditTask}
-              />
+              <TaskList tasks={educationTasks} handleEditTask={this.props.handleEditTask} />
             </section>
           )}
           {Object.keys(hobbyTasks).length > 0 && (
             <section className="global-task-section global-task-section--hobby">
               <h1 className="global-task-section__heading">Hobby</h1>
-              <TaskList
-                tasks={hobbyTasks}
-                handleEditTask={this.props.handleEditTask}
-              />
+              <TaskList tasks={hobbyTasks} handleEditTask={this.props.handleEditTask} />
             </section>
           )}
           {Object.keys(sportTasks).length > 0 && (
             <section className="global-task-section global-task-section--sport">
               <h1 className="global-task-section__heading">Sport</h1>
-              <TaskList
-                tasks={sportTasks}
-                handleEditTask={this.props.handleEditTask}
-              />
+              <TaskList tasks={sportTasks} handleEditTask={this.props.handleEditTask} />
             </section>
           )}
           {Object.keys(otherTasks).length > 0 && (
             <section className="global-task-section global-task-section--other">
               <h1 className="global-task-section__heading">Other</h1>
-              <TaskList
-                tasks={otherTasks}
-                handleEditTask={this.props.handleEditTask}
-              />
+              <TaskList tasks={otherTasks} handleEditTask={this.props.handleEditTask} />
             </section>
           )}
         </div>
@@ -176,11 +158,8 @@ class GlobalTaskList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  globalTasksVisibility: state.tasks.globalTasksVisibility
+const mapStateToProps = (state) => ({
+  globalTasksVisibility: state.tasks.globalTasksVisibility,
 });
 
-export default connect(
-  mapStateToProps,
-  { switchGlobalTasksVisibility }
-)(GlobalTaskList);
+export default connect(mapStateToProps, { switchGlobalTasksVisibility })(GlobalTaskList);

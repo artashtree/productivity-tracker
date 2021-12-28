@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import "./style.scss";
 import logo from "./Logo.svg";
 import Menu from "./menu";
-import { connect } from "react-redux";
-import { fetchTasks } from "../../actions/taskActions";
+// import { connect } from "react-redux";
 
 class Header extends Component {
   render() {

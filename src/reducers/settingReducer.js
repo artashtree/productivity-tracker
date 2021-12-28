@@ -1,19 +1,15 @@
-import {
-  FETCH_SETTINGS,
-  SETTING_CHANGE,
-  SAVE_SETTINGS
-} from "../actions/types";
+import { FETCH_SETTINGS, SETTING_CHANGE, SAVE_SETTINGS } from "../actions/types";
 
 const initialState = {
-  items: []
+  items: [],
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_SETTINGS:
       return {
         ...state,
-        items: action.payload
+        items: action.payload,
       };
     // case SAVE_SETTINGS:
     //     return {

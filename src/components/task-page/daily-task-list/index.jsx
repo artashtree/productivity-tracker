@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { switchDailyTasksVisibility } from "../../../actions/taskActions";
-
 import TaskList from "../task-list";
-import "./style.css";
 
 const tabsConfig = [
   {
     title: "To Do",
-    state: "todo"
+    state: "todo",
   },
   {
     title: "Done",
-    state: "done"
-  }
+    state: "done",
+  },
 ];
 
 class DailyTaskList extends Component {
@@ -35,12 +32,10 @@ class DailyTaskList extends Component {
     for (let key in tasks) {
       if (dailyTasksVisibility === "todo") {
         // tasks[key]['id'] = key;
-        if (!tasks[key]["isGlobal"] && !tasks[key]["isDone"])
-          visibleTasks[key] = tasks[key];
+        if (!tasks[key]["isGlobal"] && !tasks[key]["isDone"]) visibleTasks[key] = tasks[key];
       }
       if (dailyTasksVisibility === "done") {
-        if (!tasks[key]["isGlobal"] && tasks[key]["isDone"])
-          visibleTasks[key] = tasks[key];
+        if (!tasks[key]["isGlobal"] && tasks[key]["isDone"]) visibleTasks[key] = tasks[key];
       }
     }
 
@@ -52,7 +47,7 @@ class DailyTaskList extends Component {
       >
         <div className="daily-task-list__top">
           <ul className="task-list-tabs task-list-tabs--fulfillment">
-            {tabsConfig.map(item => {
+            {tabsConfig.map((item) => {
               let activeClass = "";
               if (this.props.dailyTasksVisibility === item.state)
                 activeClass = "task-list-tabs__item--active";
@@ -89,11 +84,8 @@ class DailyTaskList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  dailyTasksVisibility: state.tasks.dailyTasksVisibility
+const mapStateToProps = (state) => ({
+  dailyTasksVisibility: state.tasks.dailyTasksVisibility,
 });
 
-export default connect(
-  mapStateToProps,
-  { switchDailyTasksVisibility }
-)(DailyTaskList);
+export default connect(mapStateToProps, { switchDailyTasksVisibility })(DailyTaskList);

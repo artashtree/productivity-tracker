@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import "./style.scss";
 
 const scale = [1, 2, 3, 4, 5];
@@ -17,20 +16,15 @@ class RadioControl extends Component {
   render() {
     return (
       <div>
-        {scale.map(item => {
+        {scale.map((item) => {
           const id = `estimation-${item}`;
           const checked = { checked: false };
           if (item === +this.props.estimation) checked.checked = true;
           let active = "";
-          if (item <= +this.props.estimation)
-            active = "dialog__pomodoro-label--active";
+          if (item <= +this.props.estimation) active = "dialog__pomodoro-label--active";
 
           return (
-            <label
-              htmlFor={id}
-              className={`dialog__pomodoro-label ${active}`}
-              key={id}
-            >
+            <label htmlFor={id} className={`dialog__pomodoro-label ${active}`} key={id}>
               <input
                 className="dialog__pomodoro-input"
                 type="radio"

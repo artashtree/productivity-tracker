@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import firebase from "firebase";
-
 import Pomodoros from "../pomodoros";
-import "./style.scss";
 
 class Timer extends Component {
   constructor(props) {
@@ -18,7 +16,7 @@ class Timer extends Component {
       isOver: false,
       timeCounter: 0,
       iterationCounter: 1,
-      pomodoros: []
+      pomodoros: [],
     };
 
     this.startIteration = this.startIteration.bind(this);
@@ -48,7 +46,7 @@ class Timer extends Component {
 
       this.setState({
         timeCounter: workTime,
-        pomodoros
+        pomodoros,
       });
     }
   }
@@ -64,7 +62,7 @@ class Timer extends Component {
       const db = firebase.database();
       const dbRef = db.ref(`tasks/${id}`);
       dbRef.set(task);
-      dbRef.once("value", null, err => console.error(err));
+      dbRef.once("value", null, (err) => console.error(err));
     }
   }
 
@@ -93,7 +91,7 @@ class Timer extends Component {
         isWork,
         isOver,
         isBreak,
-        timeCounter: workTime
+        timeCounter: workTime,
       },
       () => {
         this.interval = this.setCounter();
@@ -142,7 +140,7 @@ class Timer extends Component {
         isOver,
         isBreak,
         iterationCounter: iterationCounter + 1,
-        timeCounter: time
+        timeCounter: time,
       },
       () => {
         this.interval = this.setCounter();
@@ -155,7 +153,7 @@ class Timer extends Component {
               isWork: false,
               isOver: true,
               isBreak: true,
-              timeCounter: workTime
+              timeCounter: workTime,
             },
             () => clearInterval(this.interval)
           );
@@ -191,7 +189,7 @@ class Timer extends Component {
       isOver,
       spinnerStyle,
       fillerStyle,
-      maskStyle
+      maskStyle,
     });
 
     clearTimeout(this.timeout);
@@ -200,7 +198,7 @@ class Timer extends Component {
 
   failPomodora() {
     const { iterationCounter, pomodoros } = this.state;
-    pomodoros.map(p => {
+    pomodoros.map((p) => {
       if (p.index === iterationCounter) {
         p.failed = true;
       }
@@ -214,7 +212,7 @@ class Timer extends Component {
 
   finishPomodora() {
     const { iterationCounter, pomodoros } = this.state;
-    pomodoros.map(p => {
+    pomodoros.map((p) => {
       if (p.index === iterationCounter) {
         p.finished = true;
       }
@@ -231,7 +229,7 @@ class Timer extends Component {
       isBreak,
       isOver,
       timeCounter,
-      pomodoros
+      pomodoros,
     } = this.state;
 
     const { priority } = this.props.task;
@@ -306,15 +304,12 @@ class Timer extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     id: state.timer.id,
     task: state.timer.task,
-    settings: state.settings.items
+    settings: state.settings.items,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(withRouter(Timer));
+export default connect(mapStateToProps, null)(withRouter(Timer));

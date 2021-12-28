@@ -54,9 +54,7 @@ class ReportPage extends Component {
     return (
       <main className="main">
         <div className="content">
-          <h1 className="heading">
-            Report
-          </h1>
+          <h1 className="heading">Report</h1>
           <div id="charts-container" />
         </div>
       </main>
@@ -64,13 +62,10 @@ class ReportPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    tasks: state.tasks.items
+    tasks: state.tasks.items,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(withRouter(ReportPage));
+export default connect(mapStateToProps, null)(withRouter(ReportPage));

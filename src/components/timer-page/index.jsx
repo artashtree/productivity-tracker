@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import Timer from "./timer";
 import "./style.scss";
 
@@ -51,14 +50,11 @@ class TimerPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     id: state.timer.id,
-    task: state.timer.task
+    task: state.timer.task,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  null
-)(withRouter(TimerPage));
+export default connect(mapStateToProps, null)(withRouter(TimerPage));

@@ -4,18 +4,18 @@ export default {
     borderWidth: null,
     plotBorderWidth: 0,
     backgroundColor: null,
-    type: "column"
+    type: "column",
   },
   title: {
-    text: null
+    text: null,
   },
   navigation: {
     buttonOptions: {
-      enabled: false
-    }
+      enabled: false,
+    },
   },
   subtitle: {
-    text: null
+    text: null,
   },
   plotOptions: {
     column: {
@@ -23,17 +23,17 @@ export default {
       size: "95%",
       borderWidth: 0,
       events: {
-        legendItemClick: function() {
+        legendItemClick: function () {
           return false;
-        }
-      }
+        },
+      },
     },
     allowPointSelect: false,
     series: {
       marker: {
-        enabled: false
-      }
-    }
+        enabled: false,
+      },
+    },
   },
   xAxis: {
     categories: [""],
@@ -42,9 +42,9 @@ export default {
     lineColor: "#fff",
     labels: {
       style: {
-        color: "#fff"
-      }
-    }
+        color: "#fff",
+      },
+    },
   },
   yAxis: {
     lineWidth: 1,
@@ -53,15 +53,15 @@ export default {
     title: null,
     labels: {
       style: {
-        color: "#fff"
-      }
-    }
+        color: "#fff",
+      },
+    },
   },
   legend: {
     symbolRadius: 0,
     itemStyle: {
       font: "15px/1 Trebuchet MS, Verdana, sans-serif",
-      color: "#A0A0A0"
-    }
-  }
-}
+      color: "#A0A0A0",
+    },
+  },
+};

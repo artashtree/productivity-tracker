@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-
-import "./style.scss";
-
 import emptyTomato from "./empty-tomato.svg";
 import fillTomato from "./fill-tomato.svg";
 import failedTomato from "./tomato-failed.svg";
+import "./style.scss";
 
 class Pomodoros extends Component {
   constructor(props) {
@@ -17,7 +15,7 @@ class Pomodoros extends Component {
 
     return (
       <ul className="timer__pomodoro">
-        {pomodoros.map(p => {
+        {pomodoros.map((p) => {
           if (p.failed) {
             return (
               <li className="timer__pomodoro-item" key={p.index}>
@@ -33,22 +31,14 @@ class Pomodoros extends Component {
           if (p.finished) {
             return (
               <li className="timer__pomodoro-item" key={p.index}>
-                <img
-                  src={fillTomato}
-                  className="timer__fill-tomato timer__pomodoro-img"
-                  alt=""
-                />
+                <img src={fillTomato} className="timer__fill-tomato timer__pomodoro-img" alt="" />
               </li>
             );
           }
 
           return (
             <li className="timer__pomodoro-item" key={p.index}>
-              <img
-                src={emptyTomato}
-                className="timer__empty-tomato timer__pomodoro-img"
-                alt=""
-              />
+              <img src={emptyTomato} className="timer__empty-tomato timer__pomodoro-img" alt="" />
             </li>
           );
         })}
