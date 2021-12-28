@@ -9,7 +9,7 @@ import GlobalTaskList from "./global-task-list";
 import AddTaskDialog from "../dialogs/add-task-dialog";
 import EditTaskDialog from "../dialogs/edit-task-dialog";
 import Modal from "../modal";
-import { showModal } from "../../../actions/modalActions";
+import { showModal } from "../../actions/modalActions";
 import Preloader from "../preloader";
 import "./style.scss";
 

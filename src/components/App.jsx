@@ -7,10 +7,10 @@ import TaskPage from "./task-page";
 import SettingsPage from "./settings-page";
 import ReportPage from "./report-page";
 import TimerPage from "./timer-page";
-import { fetchTasks } from "../../actions/taskActions";
-import { fetchSettings } from "../../actions/settingsActions";
+import { fetchTasks } from "../actions/taskActions";
+import { fetchSettings } from "../actions/settingsActions";
 
-import "../../config/db";
+import "../config/db";
 
 class ProductivityApp extends Component {
   componentDidMount() {

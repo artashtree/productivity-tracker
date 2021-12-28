@@ -1,9 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import App from "./components/App";
+import store from "./store";
+
+import "./assets/fonts/icomoon.eot";
+import "./assets/fonts/icomoon.svg";
+import "./assets/fonts/icomoon.ttf";
+import "./assets/fonts/icomoon.woff";
+import "./assets/styles/base.scss";
+
+import * as serviceWorker from "./serviceWorker";
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

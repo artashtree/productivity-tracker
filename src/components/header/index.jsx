@@ -3,7 +3,7 @@ import "./style.scss";
 import logo from "./Logo.svg";
 import Menu from "./menu";
 import { connect } from "react-redux";
-import { fetchTasks } from "../../../actions/taskActions";
+import { fetchTasks } from "../../actions/taskActions";
 
 class Header extends Component {
   render() {

@@ -3,45 +3,52 @@ import { connect } from "react-redux";
 import firebase from "firebase";
 
 import RadioControl from "../radio-control";
-import { hideModal } from "../../../../actions/modalActions";
+import { hideModal } from "../../../actions/modalActions";
 
 const categoryConfig = ["Work", "Education", "Hobby", "Sport", "Other"];
 const priorityConfig = ["Urgent", "High", "Middle", "Low"];
 
-class AddTaskDialog extends Component {
+class EditTaskDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
       form: {
         title: "",
         description: "",
-        category: "work",
+        category: "",
         deadline: "",
-        estimation: 3,
-        priority: "urgent",
+        estimation: 0,
+        priority: 0,
         isDone: false,
         isGlobal: true
       }
     };
 
-    this.handleAddTask = this.handleAddTask.bind(this);
+    this.handleEditTask = this.handleEditTask.bind(this);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleEstimationChange = this.handleEstimationChange.bind(this);
   }
 
-  handleAddTask(e) {
+  componentDidMount() {
+    const { tasks } = this.props;
+    const { id } = this.props.dialog;
+    let { form } = this.state;
+
+    for (let i in tasks) {
+      if (i === id) form = tasks[i];
+    }
+
+    this.setState({ form });
+  }
+
+  handleEditTask(e) {
     const { form } = this.state;
+    const { id } = this.props.dialog;
     const db = firebase.database();
-    const dbRef = db.ref("tasks");
-    dbRef.push(form);
-    dbRef.on(
-      "value",
-      data => {
-        if (!data.val()) console.error("Error. Cannot add task.");
-      },
-      err => console.error(err)
-    );
+    const dbRef = db.ref(`tasks/${id}`);
+    dbRef.set(form);
+    dbRef.once("value", null, err => console.error(err));
 
     this.props.hideModal();
     e.preventDefault();
@@ -79,8 +86,8 @@ class AddTaskDialog extends Component {
 
     return (
       <section className="dialog">
-        <form onSubmit={this.handleAddTask}>
-          <h1 className="dialog__heading">Add Task</h1>
+        <form onSubmit={this.handleEditTask}>
+          <h1 className="dialog__heading">Edit Task</h1>
           <ul className="dialog__list">
             <li className="dialog__list-item">
               <h2 className="dialog__list-item-title">Title</h2>
@@ -187,7 +194,7 @@ class AddTaskDialog extends Component {
             />
             <button
               type="submit"
-              title="Add Task"
+              title="Edit Task"
               className="icon-check dialog__check dialog__btn done-dialog"
             />
           </div>
@@ -197,7 +204,12 @@ class AddTaskDialog extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  tasks: state.tasks.items,
+  dialog: state.modals.dialog
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { hideModal }
-)(AddTaskDialog);
+)(EditTaskDialog);

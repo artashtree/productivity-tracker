@@ -5,8 +5,8 @@ import {
 import { connect } from "react-redux";
 import firebase from "firebase";
 
-import { showModal } from "../../../../../actions/modalActions";
-import { setTimer } from "../../../../../actions/timerActions";
+import { showModal } from "../../../../actions/modalActions";
+import { setTimer } from "../../../../actions/timerActions";
 
 import "./style.scss";
 

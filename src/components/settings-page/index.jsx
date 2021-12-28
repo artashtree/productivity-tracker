@@ -17,7 +17,7 @@ import YourCycle from './your-cycle';
 
 import {
     fetchSettings
-} from '../../../actions/settingsActions';
+} from '../../actions/settingsActions';
 class SettingsPage extends Component {
     constructor(props) {
         super(props);
