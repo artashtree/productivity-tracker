@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import firebase from "firebase";
-import RadioControl from "./EstimationControl";
+import EstimationControl from "./EstimationControl";
 import { hideModal } from "../../actions/modalActions";
-
-const categoryConfig = ["Work", "Education", "Hobby", "Sport", "Other"];
-const priorityConfig = ["Urgent", "High", "Middle", "Low"];
+import { categoryConfig, priorityConfig } from '../../config/dialogsConfig';
 
 class AddTaskDialog extends Component {
   constructor(props) {
@@ -139,7 +137,7 @@ class AddTaskDialog extends Component {
             </li>
             <li className="dialog__list-item">
               <h2 className="dialog__list-item-title">Estimation</h2>
-              <RadioControl
+              <EstimationControl
                 estimation={estimation}
                 handleEstimationChange={this.handleEstimationChange}
               />

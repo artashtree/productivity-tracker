@@ -1,9 +1,8 @@
 import React, { Component } from "react";
+import { estimationControlScale } from '../../config/dialogsConfig';
 import "./EstimationControl.scss";
 
-const scale = [1, 2, 3, 4, 5];
-
-class RadioControl extends Component {
+class EstimationControl extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -16,7 +15,7 @@ class RadioControl extends Component {
   render() {
     return (
       <div>
-        {scale.map((item) => {
+        {estimationControlScale.map((item) => {
           const id = `estimation-${item}`;
           const checked = { checked: false };
           if (item === +this.props.estimation) checked.checked = true;
@@ -42,4 +41,4 @@ class RadioControl extends Component {
   }
 }
 
-export default RadioControl;
+export default EstimationControl;

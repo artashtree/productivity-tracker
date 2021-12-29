@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Highcharts from "highcharts";
-import config from "../config/hch-config";
+import config from "../config/hchConfig";
 
 class ReportPage extends Component {
   componentDidMount() {

@@ -5,11 +5,6 @@ import failedTomato from "../assets/img/tomato-failed.svg";
 import "./Pomodoros.scss";
 
 class Pomodoros extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     const { pomodoros } = this.props;
 
