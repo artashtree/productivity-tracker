@@ -14,6 +14,12 @@ class Header extends Component {
             <img src={logo} className="logo-img" alt="Productivity tracker" />
           </a>
           <ul className="menu">
+            <li className="menu__item menu__item--add">
+              <a href="" className="icon-add menu__link open-dialog add-task-btn" />
+            </li>
+            <li className="menu__item menu__item--remove">
+              <a href="" id="remove-mode-btn" className="icon-trash menu__link" />
+            </li>
             <li className="menu__item">
               <NavLink activeStyle={activeStyle} exact to={"/"} className="menu__link icon-list" />
             </li>

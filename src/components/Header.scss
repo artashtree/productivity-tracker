@@ -26,6 +26,11 @@
     &:not(:first-child) {
       margin-left: 2rem;
     }
+
+    &--add,
+    &--remove {
+      display: none;
+    }
   }
 
   &__link {
