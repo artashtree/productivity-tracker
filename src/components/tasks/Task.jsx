@@ -115,7 +115,7 @@ class Task extends Component {
         <div className="task-list__right-block">
           <button
             className="task-list__timer-btn"
-            disabled={!isDaily}
+            disabled={!isDaily || task.isDone}
             onClick={this.handleTimerClick}
           >
             <span className="task-list__icon-holder">

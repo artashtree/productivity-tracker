@@ -2,17 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { switchDailyTasksVisibility } from "../../actions/taskActions";
 import TaskList from "./TaskList";
-
-const tabsConfig = [
-  {
-    title: "To Do",
-    state: "todo",
-  },
-  {
-    title: "Done",
-    state: "done",
-  },
-];
+import { dailyTasksTabsConfig } from '../../config/tasksConfig';
 
 class DailyTaskList extends Component {
   constructor(props) {
@@ -47,7 +37,7 @@ class DailyTaskList extends Component {
       >
         <div className="daily-task-list__top">
           <ul className="task-list-tabs task-list-tabs--fulfillment">
-            {tabsConfig.map((item) => {
+            {dailyTasksTabsConfig.map((item) => {
               let activeClass = "";
               if (this.props.dailyTasksVisibility === item.state)
                 activeClass = "task-list-tabs__item--active";

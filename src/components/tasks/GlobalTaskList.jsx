@@ -2,29 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { switchGlobalTasksVisibility } from "../../actions/taskActions";
 import TaskList from "./TaskList";
-
-const tabsConfig = [
-  {
-    title: "All",
-    state: "all",
-  },
-  {
-    title: "Urgent",
-    state: "urgent",
-  },
-  {
-    title: "High",
-    state: "high",
-  },
-  {
-    title: "Middle",
-    state: "middle",
-  },
-  {
-    title: "Low",
-    state: "low",
-  },
-];
+import { globalTasksTabsConfig } from '../../config/tasksConfig';
 
 class GlobalTaskList extends Component {
   constructor(props) {
@@ -97,7 +75,7 @@ class GlobalTaskList extends Component {
           </h1>
 
           <ul className="task-list-tabs task-list-tabs--priority">
-            {tabsConfig.map((item) => {
+            {globalTasksTabsConfig.map((item) => {
               let activeClass = "";
               if (this.props.globalTasksVisibility === item.state)
                 activeClass = "task-list-tabs__item--active";
