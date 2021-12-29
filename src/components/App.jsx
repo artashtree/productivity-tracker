@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-
-import Header from "./header";
-import TaskPage from "./task-page";
-import SettingsPage from "./settings-page";
-import ReportPage from "./report-page";
-import TimerPage from "./timer-page";
+import Header from "./Header";
+import TaskPage from "./TaskPage";
+import SettingsPage from "./SettingsPage";
+import ReportPage from "./ReportPage";
+import TimerPage from "./TimerPage";
 import { fetchTasks } from "../actions/taskActions";
 import { fetchSettings } from "../actions/settingsActions";
-
 import "../config/db";
 
 class ProductivityApp extends Component {
@@ -31,7 +29,4 @@ class ProductivityApp extends Component {
     );
   }
 }
-export default connect(
-  null,
-  { fetchTasks, fetchSettings }
-)(ProductivityApp);
+export default connect(null, { fetchTasks, fetchSettings })(ProductivityApp);
