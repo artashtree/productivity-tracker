@@ -26,21 +26,3 @@ export const settingChange = (action, config) => (dispatch) => {
   });
 };
 
-export const saveSettings = (settings) => (dispatch) => {
-  const db = firebase.database();
-  const dbRef = db.ref("settings");
-  dbRef.set(settings);
-  dbRef.on(
-    "value",
-    (data) => {
-      const payload = data.val();
-      if (payload) {
-        dispatch({
-          type: SAVE_SETTINGS,
-          payload,
-        });
-      }
-    },
-    (err) => console.error(err)
-  );
-};

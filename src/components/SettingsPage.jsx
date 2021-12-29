@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import firebase from "firebase";
 import SettingsList from "./SettingsList";
 import SettingsCycle from "./SettingsCycle";
-import { fetchSettings } from "../actions/settingsActions";
+import { fetchSettings, settingChange } from "../actions/settingsActions";
 import Preloader from "./Preloader";
 
 class SettingsPage extends Component {
@@ -12,8 +12,6 @@ class SettingsPage extends Component {
     super(props);
     this.state = {
       redirect: null,
-      changed: false,
-      settings: {},
     };
     this.handleSave = this.handleSave.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -29,46 +27,32 @@ class SettingsPage extends Component {
   }
 
   handleSave() {
-    const { settings } = this.state;
-    
-    if (Object.keys(settings).length) {
-      this.dbRef.set(settings);
-      this.dbRef.on(
-        "value",
-        (data) => {
-          const payload = data.val();
-          if (payload) {
-            console.log("Settings saved", payload);
-          }
-        },
-        (err) => {
-          console.log("Error saving settings");
-          console.error(err);
-        }
-      );
+    const { settings } = this.props;
 
-      this.setState({ redirect: "/" });
-    }
+    this.dbRef.set(settings);
+    this.dbRef.on(
+      "value",
+      (data) => {
+        const payload = data.val();
+        if (payload) {
+          console.log("Settings saved", payload);
+        }
+      },
+      (err) => {
+        console.log("Error saving settings");
+        console.error(err);
+      }
+    );
+
+    this.setState({ redirect: "/" });
   }
 
   handleChange(action, config) {
-    const { max, min, step, pname } = config;
-    const { changed } = this.state;
-    const { settings } = changed ? this.state : this.props;
-
-    !changed && this.setState({ changed: true });
-
-    if (action === "plus" && settings[pname] < max) {
-      settings[pname] = settings[pname] + step;
-    }
-    if (action === "minus" && settings[pname] > min) {
-      settings[pname] = settings[pname] - step;
-    }
-    this.setState({ settings });
+    this.props.settingChange(action, config);
   }
 
   render() {
-    const { redirect, changed } = this.state;
+    const { redirect } = this.state;
     const { settings } = this.props;
 
     if (redirect) return <Redirect to={redirect} />;
@@ -81,10 +65,10 @@ class SettingsPage extends Component {
           {Object.keys(settings).length ? (
             <>
               <SettingsList
-                settings={changed ? this.state.settings : settings}
+                settings={settings}
                 handleChange={this.handleChange}
               />
-              <SettingsCycle settings={changed ? this.state.settings : settings} />
+              <SettingsCycle settings={settings} />
               <div className="buttons">
                 <Link to="/" className="buttons__btn buttons__btn--blue">
                   Go to tasks
@@ -107,4 +91,4 @@ const mapStateToProps = (state) => ({
   settings: state.settings.items,
 });
 
-export default connect(mapStateToProps, { fetchSettings })(SettingsPage);
+export default connect(mapStateToProps, { fetchSettings, settingChange })(SettingsPage);
