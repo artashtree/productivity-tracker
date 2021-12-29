@@ -5,6 +5,7 @@ import firebase from "firebase";
 import SettingsList from "./SettingsList";
 import SettingsCycle from "./SettingsCycle";
 import { fetchSettings } from "../actions/settingsActions";
+import Preloader from "./Preloader";
 
 class SettingsPage extends Component {
   constructor(props) {
@@ -72,19 +73,25 @@ class SettingsPage extends Component {
         <div className="content">
           <h1 className="heading">Settings</h1>
           <h2 className="subheading">Pomodoros settings</h2>
-          <SettingsList
-            settings={changed ? this.state.settings : settings}
-            handleChange={this.handleChange}
-          />
-          <SettingsCycle settings={changed ? this.state.settings : settings} />
-          <div className="buttons">
-            <Link to="/" className="buttons__btn buttons__btn--blue">
-              Go to tasks
-            </Link>
-            <a className="buttons__btn buttons__btn--green" onClick={this.handleSave}>
-              Save
-            </a>
-          </div>
+          {Object.keys(settings).length ? (
+            <>
+              <SettingsList
+                settings={changed ? this.state.settings : settings}
+                handleChange={this.handleChange}
+              />
+              <SettingsCycle settings={changed ? this.state.settings : settings} />
+              <div className="buttons">
+                <Link to="/" className="buttons__btn buttons__btn--blue">
+                  Go to tasks
+                </Link>
+                <a className="buttons__btn buttons__btn--green" onClick={this.handleSave}>
+                  Save
+                </a>
+              </div>
+            </>
+          ) : (
+            <Preloader />
+          )}
         </div>
       </main>
     );
