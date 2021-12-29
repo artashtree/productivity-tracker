@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import firebase from "firebase";
-import Pomodoros from "./Pomodoros";
+import TimerPomodoros from "./TimerPomodoros";
 
 class Timer extends Component {
   constructor(props) {
@@ -236,7 +236,7 @@ class Timer extends Component {
 
     return (
       <div>
-        <Pomodoros pomodoros={pomodoros} />
+        <TimerPomodoros pomodoros={pomodoros} />
 
         <section className={`timer__container timer__container--priority-${priority}`}>
           {/* Spinner: */}

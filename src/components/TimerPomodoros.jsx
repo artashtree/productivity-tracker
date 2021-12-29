@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import emptyTomato from "../assets/img/empty-tomato.svg";
 import fillTomato from "../assets/img/fill-tomato.svg";
 import failedTomato from "../assets/img/tomato-failed.svg";
-import "./Pomodoros.scss";
+import "./TimerPomodoros.scss";
 
-class Pomodoros extends Component {
+class TimerPomodoros extends Component {
   render() {
     const { pomodoros } = this.props;
 
@@ -42,4 +42,4 @@ class Pomodoros extends Component {
   }
 }
 
-export default Pomodoros;
+export default TimerPomodoros;

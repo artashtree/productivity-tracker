@@ -16,12 +16,15 @@ class ReportPage extends Component {
     if (urgentTasks) {
       series.push({ name: "Urgent", data: [urgentTasks] });
     }
+
     if (highTasks) {
       series.push({ name: "High", data: [highTasks] });
     }
+
     if (middleTasks) {
       series.push({ name: "Middle", data: [middleTasks] });
     }
+
     if (lowTasks) {
       series.push({ name: "Low", data: [lowTasks] });
     }
@@ -38,10 +41,10 @@ class ReportPage extends Component {
     const { tasks } = this.props;
     const filteredTasks = [];
 
-    for (let i in tasks) {
-      if (tasks[i].isDone) {
-        if (tasks[i]["priority"] === priority) {
-          filteredTasks.push(tasks[i]);
+    for (let key in tasks) {
+      if (tasks[key].isDone) {
+        if (tasks[key]["priority"] === priority) {
+          filteredTasks.push(tasks[key]);
         }
       }
     }
