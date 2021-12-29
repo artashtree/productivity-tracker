@@ -26,17 +26,13 @@
     &:not(:first-child) {
       margin-left: 2rem;
     }
-
-    &--add,
-    &--remove {
-      display: none;
-    }
   }
 
   &__link {
     color: #8da5b8;
     text-decoration: none;
     font-size: 2rem;
+    cursor: pointer;
 
     .menu__item--active & {
       color: #fff;

@@ -21,11 +21,23 @@ const monthNames = [
   "December",
 ];
 
+
 class Task extends Component {
   constructor(props) {
     super(props);
     this.handleTimerClick = this.handleTimerClick.bind(this);
+    this.onRemoveClick = this.onRemoveClick.bind(this);
+    this.database = firebase.database();
   }
+  
+  onRemoveClick(event) {
+    event.preventDefault();
+
+    const ref = this.database.ref(`tasks/${this.props.id}`);
+    ref.set({});
+    ref.on('value', () => console.log(`${this.props.id} removed`), () => console.error('error removing task'));
+  }
+
   moveGlobalTask(id) {
     const db = firebase.database();
     const dbRef = db.ref(`tasks/${id}`);
@@ -65,7 +77,7 @@ class Task extends Component {
   }
 
   render() {
-    const { isDaily, task } = this.props;
+    const { isDaily, task, isRemoveMode } = this.props;
     const date = this.generateDate(task.deadline);
     let liClassName = `task-list__item task-list__item--priority-${task["priority"]}  task-list__item--category-${task["category"]}`;
     // liClassName += task.isDone ? ' task-list__item--done' : '';
@@ -73,28 +85,33 @@ class Task extends Component {
     return (
       <li className={liClassName}>
         <div className="task-list__left-block">
-          <div className="task-list__date-block">
-            {date ? (
-              <span className="task-list__date">
-                <strong className="task-list__day">{date.day}</strong>
-                <span className="task-list__month">{date.month}</span>
-              </span>
-            ) : (
-              <span className="task-list__today">Today</span>
-            )}
-          </div>
-          <div className="task-list__remove-block">
-            <a className="task-list__remove-btn task-list__remove-btn--trash">
-              <span className="task-list__remove-icon">
-                <i className="icon-trash" />
-              </span>
-            </a>
-            <a className="task-list__remove-btn task-list__remove-btn--close">
+          {!isRemoveMode ? (
+            <div className="task-list__date-block">
+              {date ? (
+                <span className="task-list__date">
+                  <strong className="task-list__day">{date.day}</strong>
+                  <span className="task-list__month">{date.month}</span>
+                </span>
+              ) : (
+                <span className="task-list__today">Today</span>
+              )}
+            </div>
+          ) : (
+            <div className="task-list__remove-block">
+              <a 
+                onClick={this.onRemoveClick}
+                className="task-list__remove-btn task-list__remove-btn--trash">
+                <span className="task-list__remove-icon">
+                  <i className="icon-trash" />
+                </span>
+              </a>
+              {/* <a className="task-list__remove-btn task-list__remove-btn--close">
               <span className="task-list__remove-icon">
                 <i className="icon-close" />
               </span>
-            </a>
-          </div>
+            </a> */}
+            </div>
+          )}
         </div>
         <div className="task-list__description">
           <h1 className="task-list__heading">{task["title"]}</h1>
@@ -130,4 +147,10 @@ class Task extends Component {
   }
 }
 
-export default connect(null, { showModal, setTimer })(withRouter(Task));
+const mapStateToProps = (state) => {
+  return {
+    isRemoveMode: state.tasks.isRemoveMode,
+  };
+};
+
+export default connect(mapStateToProps, { showModal, setTimer })(withRouter(Task));

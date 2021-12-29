@@ -80,25 +80,6 @@
   text-decoration: line-through;
 }
 
-.task-list__item--remove .task-list__date-block {
-  display: none;
-}
-
-.task-list__item--remove .task-list__remove-block,
-.task-list__item--remove .task-list__remove-btn--trash {
-  display: block;
-}
-
-.task-list__item--remove.task-list__item--selected
-  .task-list__remove-btn--close {
-  display: block;
-}
-
-.task-list__item--remove.task-list__item--selected
-  .task-list__remove-btn--trash {
-  display: none;
-}
-
 .task-list__text {
   margin: 0;
   font-size: 1.4rem;

@@ -1,12 +1,26 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter, NavLink } from "react-router-dom";
+import { setRemoveMode } from "../actions/taskActions";
 import logo from "../assets/img/Logo.svg";
 import "./Header.scss";
 
 const activeStyle = { color: "#82c7e0" };
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.onRemoveClick = this.onRemoveClick.bind(this);
+  }
+
+  onRemoveClick() {
+    const { isRemoveMode } = this.props;
+    this.props.setRemoveMode(!isRemoveMode);
+  }
+
   render() {
+    const { isRemoveMode } = this.props;
+
     return (
       <header className="header">
         <div className="content">
@@ -14,12 +28,15 @@ class Header extends Component {
             <img src={logo} className="logo-img" alt="Productivity tracker" />
           </a>
           <ul className="menu">
-            <li className="menu__item menu__item--add">
-              <a href="" className="icon-add menu__link open-dialog add-task-btn" />
-            </li>
-            <li className="menu__item menu__item--remove">
-              <a href="" id="remove-mode-btn" className="icon-trash menu__link" />
-            </li>
+            {this.props.location.pathname === "/" ? (
+              <li className="menu__item menu__item--remove">
+                <a
+                  onClick={this.onRemoveClick}
+                  className="icon-trash menu__link"
+                  style={isRemoveMode ? activeStyle : null}
+                />
+              </li>
+            ) : null}
             <li className="menu__item">
               <NavLink activeStyle={activeStyle} exact to={"/"} className="menu__link icon-list" />
             </li>
@@ -44,4 +61,8 @@ class Header extends Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  isRemoveMode: state.tasks.isRemoveMode,
+});
+
+export default connect(mapStateToProps, { setRemoveMode })(withRouter(Header));

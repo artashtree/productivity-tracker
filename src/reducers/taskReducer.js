@@ -3,6 +3,7 @@ import {
   NO_TASKS,
   SWITCH_DAILY_TASKS_VISIBILITY,
   SWITCH_GLOBAL_TASKS_VISIBILITY,
+  SET_REMOVE_MODE,
 } from "../actions/types";
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   dailyTasksVisibility: "todo",
   globalTasksVisibility: "all",
   noTasks: null,
+  isRemoveMode: false,
 };
 
 export default function (state = initialState, action) {
@@ -36,6 +38,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         globalTasksVisibility: action.payload,
+      };
+
+    case SET_REMOVE_MODE:
+      return {
+        ...state,
+        isRemoveMode: action.payload,
       };
 
     default:

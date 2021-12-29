@@ -106,7 +106,6 @@
     height: 100%;
     position: relative;
     z-index: 20;
-    display: none;
   }
 
   &__remove-btn {
@@ -116,7 +115,6 @@
     font-size: 4rem;
     line-height: 8.7rem;
     height: 100%;
-    display: none;
 
     i {
       position: absolute;

@@ -4,6 +4,7 @@ import {
   NO_TASKS,
   SWITCH_DAILY_TASKS_VISIBILITY,
   SWITCH_GLOBAL_TASKS_VISIBILITY,
+  SET_REMOVE_MODE,
 } from "./types";
 
 export const fetchTasks = () => (dispatch) => {
@@ -37,5 +38,12 @@ export const switchGlobalTasksVisibility = (visibility) => (dispatch) => {
   dispatch({
     type: SWITCH_GLOBAL_TASKS_VISIBILITY,
     payload: visibility,
+  });
+};
+
+export const setRemoveMode = (mode) => (dispatch) => {
+  dispatch({
+    type: SET_REMOVE_MODE,
+    payload: mode,
   });
 };
