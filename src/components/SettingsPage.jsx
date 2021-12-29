@@ -17,6 +17,8 @@ class SettingsPage extends Component {
     };
     this.handleSave = this.handleSave.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.db = firebase.database();
+    this.dbRef = this.db.ref("settings");
   }
 
   componentDidMount() {
@@ -27,23 +29,26 @@ class SettingsPage extends Component {
   }
 
   handleSave() {
-    const db = firebase.database();
-    const dbRef = db.ref("settings");
     const { settings } = this.state;
-
-    dbRef.set(settings);
-    dbRef.on(
-      "value",
-      (data) => {
-        const payload = data.val();
-        if (payload) {
-          console.log("Settings saved", payload);
+    
+    if (Object.keys(settings).length) {
+      this.dbRef.set(settings);
+      this.dbRef.on(
+        "value",
+        (data) => {
+          const payload = data.val();
+          if (payload) {
+            console.log("Settings saved", payload);
+          }
+        },
+        (err) => {
+          console.log("Error saving settings");
+          console.error(err);
         }
-      },
-      (err) => console.error(err)
-    );
+      );
 
-    this.setState({ redirect: "/" });
+      this.setState({ redirect: "/" });
+    }
   }
 
   handleChange(action, config) {

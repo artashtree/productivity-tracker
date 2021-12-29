@@ -28,6 +28,7 @@ class Timer extends Component {
 
     this.interval = null;
     this.timeout = null;
+    this.db = firebase.database();
   }
 
   componentDidMount() {
@@ -59,10 +60,9 @@ class Timer extends Component {
       // switch isDone flag in DB
       task.isDone = true;
 
-      const db = firebase.database();
-      const dbRef = db.ref(`tasks/${id}`);
-      dbRef.set(task);
-      dbRef.once("value", null, (err) => console.error(err));
+      this.dbRef = this.db.ref(`tasks/${id}`);
+      this.dbRef.set(task);
+      this.dbRef.once("value", null, (err) => console.error(err));
     }
   }
 

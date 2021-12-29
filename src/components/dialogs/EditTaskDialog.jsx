@@ -25,6 +25,8 @@ class EditTaskDialog extends Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleEstimationChange = this.handleEstimationChange.bind(this);
+
+    this.db = firebase.database();
   }
 
   componentDidMount() {
@@ -42,8 +44,7 @@ class EditTaskDialog extends Component {
   handleEditTask(e) {
     const { form } = this.state;
     const { id } = this.props.dialog;
-    const db = firebase.database();
-    const dbRef = db.ref(`tasks/${id}`);
+    const dbRef = this.db.ref(`tasks/${id}`);
     dbRef.set(form);
     dbRef.once("value", null, (err) => console.error(err));
 

@@ -25,14 +25,17 @@ class AddTaskDialog extends Component {
     this.handleTextChange = this.handleTextChange.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleEstimationChange = this.handleEstimationChange.bind(this);
+
+    this.db = firebase.database();
+    this.dbRef = this.db.ref("tasks");
   }
 
   handleAddTask(e) {
+    e.preventDefault();
     const { form } = this.state;
-    const db = firebase.database();
-    const dbRef = db.ref("tasks");
-    dbRef.push(form);
-    dbRef.on(
+    
+    this.dbRef.push(form);
+    this.dbRef.on(
       "value",
       (data) => {
         if (!data.val()) console.error("Error. Cannot add task.");
@@ -41,7 +44,6 @@ class AddTaskDialog extends Component {
     );
 
     this.props.hideModal();
-    e.preventDefault();
   }
 
   handleTextChange(e) {

@@ -21,26 +21,28 @@ const monthNames = [
   "December",
 ];
 
-
 class Task extends Component {
   constructor(props) {
     super(props);
     this.handleTimerClick = this.handleTimerClick.bind(this);
     this.onRemoveClick = this.onRemoveClick.bind(this);
-    this.database = firebase.database();
+    this.db = firebase.database();
   }
-  
+
   onRemoveClick(event) {
     event.preventDefault();
 
-    const ref = this.database.ref(`tasks/${this.props.id}`);
+    const ref = this.db.ref(`tasks/${this.props.id}`);
     ref.set({});
-    ref.on('value', () => console.log(`${this.props.id} removed`), () => console.error('error removing task'));
+    ref.on(
+      "value",
+      () => console.log(`${this.props.id} removed`),
+      () => console.error("error removing task")
+    );
   }
 
   moveGlobalTask(id) {
-    const db = firebase.database();
-    const dbRef = db.ref(`tasks/${id}`);
+    const dbRef = this.db.ref(`tasks/${id}`);
     dbRef.on(
       "value",
       (data) => {
@@ -98,9 +100,10 @@ class Task extends Component {
             </div>
           ) : (
             <div className="task-list__remove-block">
-              <a 
+              <a
                 onClick={this.onRemoveClick}
-                className="task-list__remove-btn task-list__remove-btn--trash">
+                className="task-list__remove-btn task-list__remove-btn--trash"
+              >
                 <span className="task-list__remove-icon">
                   <i className="icon-trash" />
                 </span>
