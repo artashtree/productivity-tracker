@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Timer from "./timer";
+import Timer from "./Timer";
 import "./TimerPage.scss";
 
 class TimerPage extends Component {
