@@ -119,13 +119,3 @@
     font-style: normal;
   }
 }
-
-@media only screen and (max-width: 767px) {
-  .pomodoros-list {
-    width: 36rem;
-
-    &__item {
-      flex-basis: 100%;
-    }
-  }
-}

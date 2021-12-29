@@ -38,18 +38,6 @@ code {
     monospace;
 }
 
-@media only screen and (min-width: 1280px) {
-  body {
-    min-width: 128rem;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  body {
-    min-width: 38rem;
-  }
-}
-
 img {
   max-width: 100%;
 }

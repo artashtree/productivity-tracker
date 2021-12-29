@@ -9,12 +9,6 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .header {
-    padding: 3rem 0;
-  }
-}
-
 .page--sticky-header {
   .header {
     position: fixed;
@@ -38,12 +32,6 @@
 
   .menu__item--add {
     display: inline-block;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .logo {
-    display: none !important;
   }
 }
 

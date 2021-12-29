@@ -19,10 +19,6 @@
   &__edit-block {
     flex-basis: 8.7rem;
     position: relative;
-
-    @media only screen and (max-width: 767px) {
-      flex-basis: 5rem;
-    }
   }
 
   &__edit-btn {
