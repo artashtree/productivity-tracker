@@ -3,21 +3,21 @@ import "./SettingsCycle.scss";
 
 class SettingsCycle extends Component {
   formatTime(time) {
-    let hours = parseInt(time / 60);
-    let minutes = parseInt(time % 60);
+    const hours = parseInt(time / 60);
+    const minutes = parseInt(time % 60);
 
-    return hours + "h " + minutes + "m";
+    return `${hours}h ${minutes}m`;
   }
 
   generateYourCycleContent() {
     const { longBreak, shortBreak, workIteration, workTime } = this.props.settings;
 
-    let fullWorkTime = workTime * workIteration * 2;
-    let fullShortBreak = shortBreak * (workIteration - 1) * 2;
-    let fullTime = fullWorkTime + fullShortBreak + longBreak;
-    let percent = fullTime / 100;
-    let firstCycle = workTime * workIteration + shortBreak * (workIteration - 1) + longBreak;
-    let content = [];
+    const fullWorkTime = workTime * workIteration * 2;
+    const fullShortBreak = shortBreak * (workIteration - 1) * 2;
+    const fullTime = fullWorkTime + fullShortBreak + longBreak;
+    const percent = fullTime / 100;
+    const firstCycle = workTime * workIteration + shortBreak * (workIteration - 1) + longBreak;
+    const content = [];
 
     for (let i = 0; i < workIteration * 2; i++) {
       let dataContent = {};
@@ -62,10 +62,11 @@ class SettingsCycle extends Component {
       }
     }
 
-    let spanCount = fullTime / 30;
-    let spanStep = 30 / percent;
+    const spanCount = fullTime / 30;
+    const spanStep = 30 / percent;
     let step = 0;
     let time = 0;
+
     for (let i = 0; i < spanCount - 1; i++) {
       time += 30;
       let dataContent = {
