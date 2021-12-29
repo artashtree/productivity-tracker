@@ -70,7 +70,7 @@ class Timer extends Component {
     console.log("startIteration");
     const { workTime } = this.props.settings;
 
-    const time = workTime;
+    const time = workTime * 60; // * 60
     const isWork = true;
     const isOver = false;
     const isBreak = false;
@@ -127,9 +127,10 @@ class Timer extends Component {
     const isBreak = true;
     const isOver = false;
 
-    const spinnerStyle = { animation: `rota2 ${time}s linear 1 forwards` };
-    const fillerStyle = { animation: `opa2 ${time}s steps(1, end) 1 reverse forwards` };
-    const maskStyle = { animation: `opa2 ${time}s steps(1, end) 1 forwards` };
+    // time * 60
+    const spinnerStyle = { animation: `rota2 ${time * 60}s linear 1 forwards` };
+    const fillerStyle = { animation: `opa2 ${time * 60}s steps(1, end) 1 reverse forwards` };
+    const maskStyle = { animation: `opa2 ${time * 60}s steps(1, end) 1 forwards` };
 
     this.setState(
       {
@@ -157,7 +158,7 @@ class Timer extends Component {
             },
             () => clearInterval(this.interval)
           );
-        }, time * 1000);
+        }, time * 1000 * 60); // * 60
       }
     );
   }
@@ -171,7 +172,7 @@ class Timer extends Component {
       if (timeCounter <= 1) {
         clearInterval(this.interval);
       }
-    }, 1000);
+    }, 1000 * 60); // * 60
   }
 
   finishTask() {
