@@ -60,7 +60,7 @@ class TaskPage extends Component {
   }
 
   render() {
-    const { tasks, noTasks } = this.props;
+    const { noTasks, isLoading } = this.props;
     const { firstTimeMessage, firstTaskMessage } = this.state;
     const dailyTasks = this.getTasksForList("daily");
     const globalTasks = this.getTasksForList("global");
@@ -75,7 +75,7 @@ class TaskPage extends Component {
               onClick={() => this.props.showModal("addTask")}
             />
           </h1>
-          {Object.keys(tasks).length > 0 ? (
+          {!isLoading ? (
             <div>
               {Object.keys(dailyTasks).length > 0 ? (
                 <DailyTaskList tasks={dailyTasks} />
@@ -125,6 +125,7 @@ const mapStateToProps = (state) => ({
   tasks: state.tasks.items,
   dialog: state.modals.dialog,
   noTasks: state.tasks.noTasks,
+  isLoading: state.tasks.isLoading,
 });
 
 export default connect(mapStateToProps, { showModal })(TaskPage);

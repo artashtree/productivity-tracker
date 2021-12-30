@@ -5,25 +5,33 @@ import {
   SWITCH_DAILY_TASKS_VISIBILITY,
   SWITCH_GLOBAL_TASKS_VISIBILITY,
   SET_REMOVE_MODE,
+  FETCH_TASKS_SUCCESS,
+  FETCH_TASKS_ERROR,
 } from "./types";
 
 export const fetchTasks = () => (dispatch) => {
+  dispatch({ type: FETCH_TASKS });
+
   const db = firebase.database();
   const dbRef = db.ref("tasks");
+
   dbRef.on(
     "value",
     (tasks) => {
       const payload = tasks.val();
       if (payload) {
         dispatch({
-          type: FETCH_TASKS,
+          type: FETCH_TASKS_SUCCESS,
           payload,
         });
       } else {
         dispatch({ type: NO_TASKS });
       }
     },
-    (err) => console.error(err)
+    (err) => {
+      dispatch({ FETCH_TASKS_ERROR });
+      console.error(err);
+    }
   );
 };
 

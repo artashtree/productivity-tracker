@@ -53,7 +53,7 @@ class SettingsPage extends Component {
 
   render() {
     const { redirect } = this.state;
-    const { settings } = this.props;
+    const { settings, isLoading } = this.props;
 
     if (redirect) return <Redirect to={redirect} />;
 
@@ -62,12 +62,11 @@ class SettingsPage extends Component {
         <div className="content">
           <h1 className="heading">Settings</h1>
           <h2 className="subheading">Pomodoros settings</h2>
-          {Object.keys(settings).length ? (
+          {isLoading ? (
+            <Preloader />
+          ) : (
             <>
-              <SettingsList
-                settings={settings}
-                handleChange={this.handleChange}
-              />
+              <SettingsList settings={settings} handleChange={this.handleChange} />
               <SettingsCycle settings={settings} />
               <div className="buttons">
                 <Link to="/" className="buttons__btn buttons__btn--blue">
@@ -78,8 +77,6 @@ class SettingsPage extends Component {
                 </a>
               </div>
             </>
-          ) : (
-            <Preloader />
           )}
         </div>
       </main>
@@ -89,6 +86,7 @@ class SettingsPage extends Component {
 
 const mapStateToProps = (state) => ({
   settings: state.settings.items,
+  isLoading: state.settings.isLoading,
 });
 
 export default connect(mapStateToProps, { fetchSettings, settingChange })(SettingsPage);
