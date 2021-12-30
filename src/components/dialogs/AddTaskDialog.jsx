@@ -38,7 +38,9 @@ class AddTaskDialog extends Component {
     this.dbRef.on(
       "value",
       (data) => {
-        if (!data.val()) console.error("Error. Cannot add task.");
+        if (!data.val()) {
+          window.location.reload();
+        }
       },
       (err) => console.error(err)
     );
