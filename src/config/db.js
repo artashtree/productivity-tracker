@@ -1,6 +1,7 @@
-import firebase from "firebase";
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
 
-const config = {
+const firebaseConfig = {
   apiKey: "AIzaSyC4DJ-GXUdPCOUfLl6x4BSbIUrakbmT-4k",
   authDomain: "productivity-app-578ab.firebaseapp.com",
   databaseURL: "https://productivity-app-578ab.firebaseio.com",
@@ -9,4 +10,5 @@ const config = {
   messagingSenderId: "714911551245",
 };
 
-firebase.initializeApp(config);
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);

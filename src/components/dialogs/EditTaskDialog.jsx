@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue, set} from "firebase/database";
 import EstimationControl from "./EstimationControl";
 import { hideModal } from "../../actions/modalActions";
 import { categoryConfig, priorityConfig } from '../../config/dialogsConfig';
@@ -26,7 +27,7 @@ class EditTaskDialog extends Component {
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleEstimationChange = this.handleEstimationChange.bind(this);
 
-    this.db = firebase.database();
+    this.db = getDatabase();
   }
 
   componentDidMount() {
@@ -44,9 +45,9 @@ class EditTaskDialog extends Component {
   handleEditTask(e) {
     const { form } = this.state;
     const { id } = this.props.dialog;
-    const dbRef = this.db.ref(`tasks/${id}`);
-    dbRef.set(form);
-    dbRef.once("value", null, (err) => console.error(err));
+    const dbRef = ref(this.db, `tasks/${id}`);
+    set(dbRef, form);
+    onValue(dbRef, () => {}, (err) => console.error(err));
 
     this.props.hideModal();
     e.preventDefault();

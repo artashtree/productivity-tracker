@@ -14,7 +14,9 @@ class ProductivityApp extends Component {
   componentDidMount() {
     this.props.fetchTasks();
     this.props.fetchSettings();
+    console.log('Test deploy')
   }
+
   render() {
     return (
       <Router>

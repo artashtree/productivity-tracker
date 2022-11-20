@@ -1,4 +1,5 @@
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue} from "firebase/database";
 import {
   FETCH_SETTINGS,
   SETTING_CHANGE,
@@ -9,22 +10,15 @@ import {
 export const fetchSettings = () => (dispatch) => {
   dispatch({ type: FETCH_SETTINGS });
 
-  const db = firebase.database();
-  const dbRef = db.ref("settings");
-
-  dbRef.on(
-    "value",
-    (settings) => {
-      dispatch({
-        type: FETCH_SETTINGS_SUCCESS,
-        payload: settings.val(),
-      });
-    },
-    (err) => {
-      console.error(err);
-      dispatch({ type: FETCH_SETTINGS_ERROR });
-    }
-  );
+  const db = getDatabase();
+  const settingssRef = ref(db, 'settings');
+  onValue(settingssRef, (snapshot) => {
+    const data = snapshot.val();
+    dispatch({
+      type: FETCH_SETTINGS_SUCCESS,
+      payload: data,
+    });
+  });
 };
 
 export const settingChange = (action, config) => (dispatch) => {

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue, set} from "firebase/database";
 import SettingsList from "./SettingsList";
 import SettingsCycle from "./SettingsCycle";
 import { fetchSettings, settingChange } from "../actions/settingsActions";
@@ -15,8 +16,8 @@ class SettingsPage extends Component {
     };
     this.handleSave = this.handleSave.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.db = firebase.database();
-    this.dbRef = this.db.ref("settings");
+    this.db = getDatabase();
+    this.dbRef = ref(this.db, 'settings');
   }
 
   componentDidMount() {
@@ -29,9 +30,9 @@ class SettingsPage extends Component {
   handleSave() {
     const { settings } = this.props;
 
-    this.dbRef.set(settings);
-    this.dbRef.on(
-      "value",
+    set(this.dbRef, settings);
+    onValue(
+      this.dbRef,
       (data) => {
         const payload = data.val();
         if (payload) {

@@ -1,4 +1,5 @@
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue} from "firebase/database";
 import {
   FETCH_TASKS,
   NO_TASKS,
@@ -12,27 +13,19 @@ import {
 export const fetchTasks = () => (dispatch) => {
   dispatch({ type: FETCH_TASKS });
 
-  const db = firebase.database();
-  const dbRef = db.ref("tasks");
-
-  dbRef.on(
-    "value",
-    (tasks) => {
-      const payload = tasks.val();
-      if (payload) {
-        dispatch({
-          type: FETCH_TASKS_SUCCESS,
-          payload,
-        });
-      } else {
-        dispatch({ type: NO_TASKS });
-      }
-    },
-    (err) => {
-      dispatch({ FETCH_TASKS_ERROR });
-      console.error(err);
+  const db = getDatabase();
+  const tasksRef = ref(db, 'tasks');
+  onValue(tasksRef, (snapshot) => {
+    const data = snapshot.val();
+    if (data) {
+      dispatch({
+        type: FETCH_TASKS_SUCCESS,
+        payload: data,
+      });
+    } else {
+      dispatch({ type: NO_TASKS });
     }
-  );
+  });
 };
 
 export const switchDailyTasksVisibility = (visibility) => (dispatch) => {

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue, set} from "firebase/database";
 import TimerPomodoros from "./TimerPomodoros";
 
 class Timer extends Component {
@@ -28,7 +29,7 @@ class Timer extends Component {
 
     this.interval = null;
     this.timeout = null;
-    this.db = firebase.database();
+    this.db = getDatabase();
   }
 
   componentDidMount() {
@@ -60,9 +61,9 @@ class Timer extends Component {
       // switch isDone flag in DB
       task.isDone = true;
 
-      this.dbRef = this.db.ref(`tasks/${id}`);
-      this.dbRef.set(task);
-      this.dbRef.once("value", null, (err) => console.error(err));
+      this.dbRef = ref(this.db, `tasks/${id}`);
+      set(this.dbRef, task);
+      onValue(this.dbRef, null, (err) => console.error(err));
     }
   }
 

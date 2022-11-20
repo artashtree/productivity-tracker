@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue, push} from "firebase/database";
 import EstimationControl from "./EstimationControl";
 import { hideModal } from "../../actions/modalActions";
 import { categoryConfig, priorityConfig } from '../../config/dialogsConfig';
@@ -26,17 +27,16 @@ class AddTaskDialog extends Component {
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleEstimationChange = this.handleEstimationChange.bind(this);
 
-    this.db = firebase.database();
-    this.dbRef = this.db.ref("tasks");
+    this.db = getDatabase();
+    this.dbRef = ref(this.db, "tasks");
   }
 
   handleAddTask(e) {
     e.preventDefault();
     const { form } = this.state;
     
-    this.dbRef.push(form);
-    this.dbRef.on(
-      "value",
+    push(this.dbRef, form);
+    onValue(this.dbRef,
       (data) => {
         if (!data.val()) {
           window.location.reload();

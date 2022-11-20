@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import firebase from "firebase";
+// import firebase from "firebase";
+import { getDatabase, ref, onValue, set} from "firebase/database";
 import { showModal } from "../../actions/modalActions";
 import { setTimer } from "../../actions/timerActions";
 import "./Task.scss";
@@ -26,30 +27,27 @@ class Task extends Component {
     super(props);
     this.handleTimerClick = this.handleTimerClick.bind(this);
     this.onRemoveClick = this.onRemoveClick.bind(this);
-    this.db = firebase.database();
+    this.db = getDatabase();
   }
 
   onRemoveClick(event) {
     event.preventDefault();
 
-    const ref = this.db.ref(`tasks/${this.props.id}`);
-    ref.set({});
-    ref.on(
-      "value",
+    const ref = ref(this.db, `tasks/${this.props.id}`);
+    set(ref, {});
+    onValue(ref,
       () => console.log(`${this.props.id} removed`),
       () => console.error("error removing task")
     );
   }
 
   moveGlobalTask(id) {
-    const dbRef = this.db.ref(`tasks/${id}`);
-    dbRef.on(
-      "value",
+    const dbRef = ref(this.db, `tasks/${id}`);
+    onValue(dbRef,
       (data) => {
         const task = data.val();
         task.isGlobal = false;
-        dbRef.set(task);
-        dbRef.once("value", null, (err) => console.error(err));
+        set(dbRef, task);
       },
       (err) => console.error(err)
     );
